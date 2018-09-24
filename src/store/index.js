@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { reactReduxFirebase } from "react-redux-firebase";
+import { reactReduxFirebase, getFirebase } from "react-redux-firebase";
 import firebase from "firebase";
 import rootReducer from "./reducers/index";
 import ReduxThunk from "redux-thunk";
@@ -14,7 +14,12 @@ const firebaseConfig = {
   messagingSenderId: "505623442902"
 };
 
-const rrfConfig = {};
+const rrfConfig = {
+    userProfile: ['students', 'supervisors'],
+    profileParamsToPopulate: [
+      { child: 'role', root: 'roles' }, // populates user's role with matching role object from roles
+    ]
+};
 
 firebase.initializeApp(firebaseConfig);
 
@@ -27,6 +32,6 @@ export function configStore(initialState) {
   return createStoreWithFirebase(
     rootReducer,
     initialState,
-    composeWithDevTools(applyMiddleware(ReduxThunk))
+    composeWithDevTools(applyMiddleware(ReduxThunk.withExtraArgument(getFirebase)))
   );
 }

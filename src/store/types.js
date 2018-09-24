@@ -1,0 +1,2 @@
+export const REGISTER_COMPANY = 'REGISTER_COMPANY';
+export const SUBMIT_I1 = 'SUBMIT_I1';

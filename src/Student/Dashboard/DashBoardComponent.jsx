@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Container, Grid, Button } from 'semantic-ui-react';
 import StudentProfile from './StudentProfileComponent';
 import { Link, Route } from 'react-router-dom';
+
 import RegisterForm from './RegisterFormComponent';
 import FormI1 from '../FormI1/FormI1Component';
 
